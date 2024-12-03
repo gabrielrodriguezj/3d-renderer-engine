@@ -7,3 +7,7 @@ void Model::addFace(face_t face) {
 void Model::addVertice(vec3_t vertex) {
     vertices.push_back(vertex);
 }
+
+std::vector<vec3_t> Model::getVertices(){
+    return vertices;
+}
