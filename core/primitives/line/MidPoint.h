@@ -1,3 +1,7 @@
+/*
+ * Implementation of Middle-Point algorithm for line drawing.
+ */
+
 #ifndef INC_3D_RENDERER_ENGINE_MIDPOINT_H
 #define INC_3D_RENDERER_ENGINE_MIDPOINT_H
 

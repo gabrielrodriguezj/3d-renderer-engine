@@ -1,3 +1,7 @@
+/*
+ * Implementation of DDA algorithm for line drawing.
+ */
+
 #ifndef INC_3D_RENDERER_ENGINE_DDA_H
 #define INC_3D_RENDERER_ENGINE_DDA_H
 

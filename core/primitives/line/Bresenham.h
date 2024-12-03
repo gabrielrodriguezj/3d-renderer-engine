@@ -1,3 +1,7 @@
+/*
+ * Implementation of Bresenham algorithm for line drawing.
+ */
+
 #ifndef INC_3D_RENDERER_ENGINE_BRESENHAM_H
 #define INC_3D_RENDERER_ENGINE_BRESENHAM_H
 
