@@ -4,6 +4,11 @@
 
 bool isRunning = false;
 
+// Free the resources that must be released before the application is closed.
+void freeResources(){
+
+}
+
 void processInput(void){
     SDL_Event event;
     SDL_PollEvent(&event);
@@ -38,6 +43,9 @@ int main(int argc, char* argv[]) {
         .fps = 60
     };
 
+    float frameTargetTime = (1000 / configuration.fps);
+    uint32_t previous_frame_time = 0;
+
     SDLWindow window(configuration.width, configuration.height);
     isRunning = window.isRunning();
 
@@ -59,8 +67,19 @@ int main(int argc, char* argv[]) {
         processInput();
         update();
         render();
+
+        // Guarantees that every frame is executed every FRAME_TARGET_TIME
+        // Wait some time until the reach the target frame time in milliseconds
+        int time_to_wait = frameTargetTime - (SDL_GetTicks() - previous_frame_time);
+
+        // Only delay execution if we are running too fast
+        if(time_to_wait >0 && time_to_wait <= frameTargetTime){
+            SDL_Delay(time_to_wait);
+        }
+        previous_frame_time = SDL_GetTicks();
     }
 
     window.destroy();
+    freeResources();
     return 0;
 }
