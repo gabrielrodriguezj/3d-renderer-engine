@@ -34,3 +34,7 @@ void Canvas::drawGrid(void) {
     }
 }
 
+color_t *Canvas::getBuffer(void){
+    return this->color_buffer;
+}
+

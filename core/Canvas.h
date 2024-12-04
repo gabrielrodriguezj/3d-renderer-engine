@@ -11,6 +11,7 @@ public:
     void drawPixel(int, int, color_t);
     void drawRect(int, int, int, int, color_t);
     void drawGrid(void);
+    color_t *getBuffer(void);
 private:
     color_t * color_buffer;
     int width;
