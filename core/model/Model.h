@@ -14,12 +14,11 @@ class Model {
 public:
     void addVertice(vec3_t);
     void addFace(face_t);
-
-    std::vector<vec3_t> getVertices();
+    std::vector<vec3_t>* getVertices();
 
 private:
-    std::vector<vec3_t> vertices;
-    std::vector<face_t> faces;
+    std::vector<vec3_t> *vertices = new std::vector<vec3_t>();
+    std::vector<face_t> *faces = new std::vector<face_t>();
 };
 
 

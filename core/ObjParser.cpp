@@ -15,8 +15,6 @@ int ObjParser::readFile(char* filename, Model model) {
     }
 
     while (getline(file, line)) {
-        //std::cout << line << std::endl;
-
         // Vertex information
         if (line.compare(0, 2, "v ") == 0) {
             vec3_t vertex;
