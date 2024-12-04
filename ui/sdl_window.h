@@ -1,5 +1,5 @@
-#ifndef INC_3D_RENDERER_ENGINE_SDLWINDOW_H
-#define INC_3D_RENDERER_ENGINE_SDLWINDOW_H
+#ifndef INC_3D_RENDERER_ENGINE_SDL_WINDOW_H
+#define INC_3D_RENDERER_ENGINE_SDL_WINDOW_H
 
 #include <SDL.h>
 #include "../core/Canvas.h"
@@ -22,4 +22,4 @@ public:
     void update(Canvas);
 };
 
-#endif //INC_3D_RENDERER_ENGINE_SDLWINDOW_H
+#endif //INC_3D_RENDERER_ENGINE_SDL_WINDOW_H

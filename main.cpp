@@ -1,7 +1,6 @@
-#include "ui/SDLWindow.h"
-#include "core/ObjParser.h"
-#include "core/Canvas.h"
-#include "core/rasterization/Cloud.h"
+#include "ui/sdl_window.h"
+#include "core/obj_parser.h"
+#include "core/rasterization/cloud.h"
 
 bool isRunning = false;
 
