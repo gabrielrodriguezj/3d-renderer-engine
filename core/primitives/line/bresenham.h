@@ -6,7 +6,7 @@
 #define INC_3D_RENDERER_ENGINE_BRESENHAM_H
 
 
-#include "Line.h"
+#include "line.h"
 
 class Bresenham: virtual public Line {
 public:

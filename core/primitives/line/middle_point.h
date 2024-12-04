@@ -2,11 +2,11 @@
  * Implementation of Middle-Point algorithm for line drawing.
  */
 
-#ifndef INC_3D_RENDERER_ENGINE_MIDPOINT_H
-#define INC_3D_RENDERER_ENGINE_MIDPOINT_H
+#ifndef INC_3D_RENDERER_ENGINE_MIDDLE_POINT_H
+#define INC_3D_RENDERER_ENGINE_MIDDLE_POINT_H
 
 
-#include "Line.h"
+#include "line.h"
 
 class MidPoint: virtual public Line {
 public:
@@ -14,4 +14,4 @@ public:
 };
 
 
-#endif //INC_3D_RENDERER_ENGINE_MIDPOINT_H
+#endif //INC_3D_RENDERER_ENGINE_MIDDLE_POINT_H

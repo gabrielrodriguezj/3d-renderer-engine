@@ -1,4 +1,4 @@
-#include "Perspective.h"
+#include "perspective.h"
 
 Perspective::Perspective(RenderConfiguration configuration): config(configuration){}
 

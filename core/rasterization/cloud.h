@@ -8,9 +8,9 @@
 #define INC_3D_RENDERER_ENGINE_CLOUD_H
 
 
-#include "../model/Model.h"
-#include "../Canvas.h"
-#include "../projection/Perspective.h"
+#include "../model/model.h"
+#include "../canvas.h"
+#include "../projection/perspective.h"
 
 class Cloud {
 public:

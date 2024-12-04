@@ -1,5 +1,5 @@
-#include "Cloud.h"
-#include "../projection/Perspective.h"
+#include "cloud.h"
+#include "../projection/perspective.h"
 
 void Cloud::raster(Canvas canvas, Model model, Perspective projecter) {
 
