@@ -7,7 +7,7 @@
 
 
 #include <vector>
-#include "../vector/Vector.h"
+#include "../vector/vector.h"
 #include "Face.h"
 
 class Model {

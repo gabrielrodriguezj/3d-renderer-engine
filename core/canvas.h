@@ -2,7 +2,7 @@
 #define INC_3D_RENDERER_ENGINE_CANVAS_H
 
 
-#include "Color.h"
+#include "color.h"
 
 class Canvas {
 

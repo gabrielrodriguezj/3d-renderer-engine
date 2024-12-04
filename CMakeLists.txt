@@ -3,5 +3,5 @@ project(3d_renderer_engine)
 
 set(CMAKE_CXX_STANDARD 14)
 
-add_executable(3d_renderer_engine main.cpp core/primitives/line/Line.h core/Color.h core/primitives/line/DDA.cpp core/primitives/line/DDA.h core/Canvas.cpp core/Canvas.h core/primitives/line/Bresenham.cpp core/primitives/line/Bresenham.h core/primitives/line/MidPoint.cpp core/primitives/line/MidPoint.h core/ObjParser.cpp core/ObjParser.h core/model/Model.cpp core/model/Model.h core/model/Face.h core/vector/Vector.h core/rasterization/Cloud.cpp core/rasterization/Cloud.h core/matrix/Matrix4x4.h core/projection/Perspective.cpp core/projection/Perspective.h core/config.h)
+add_executable(3d_renderer_engine main.cpp core/primitives/line/line.h core/color.h core/primitives/line/dda.cpp core/primitives/line/dda.h core/canvas.cpp core/canvas.h core/primitives/line/bresenham.cpp core/primitives/line/bresenham.h core/primitives/line/middle_point.cpp core/primitives/line/middle_point.h core/obj_parser.cpp core/obj_parser.h core/model/model.cpp core/model/model.h core/model/face.h core/vector/vector.h core/rasterization/cloud.cpp core/rasterization/cloud.h core/matrix/matrix.h core/projection/perspective.cpp core/projection/perspective.h core/config.h)
 

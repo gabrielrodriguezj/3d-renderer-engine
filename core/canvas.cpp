@@ -1,5 +1,5 @@
 #include <cstdlib>
-#include "Canvas.h"
+#include "canvas.h"
 Canvas::Canvas(int width, int height) {
     this->width = width;
     this->height = height;

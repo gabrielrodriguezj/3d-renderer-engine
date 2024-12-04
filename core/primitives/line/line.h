@@ -2,8 +2,8 @@
 #define INC_3D_RENDERER_ENGINE_LINE_H
 
 
-#include "../../Color.h"
-#include "../../Canvas.h"
+#include "../../color.h"
+#include "../../canvas.h"
 
 class Line {
 public:

@@ -2,10 +2,10 @@
  * Define the structure of a 4x4 matrix
  */
 
-#ifndef INC_3D_RENDERER_ENGINE_MATRIX4X4_H
-#define INC_3D_RENDERER_ENGINE_MATRIX4X4_H
+#ifndef INC_3D_RENDERER_ENGINE_MATRIX_H
+#define INC_3D_RENDERER_ENGINE_MATRIX_H
 
-#include "../vector/Vector.h"
+#include "../vector/vector.h"
 
 struct mat4_t {
     float m[4][4];
@@ -34,4 +34,4 @@ struct mat4_t {
     }
 };
 
-#endif //INC_3D_RENDERER_ENGINE_MATRIX4X4_H
+#endif //INC_3D_RENDERER_ENGINE_MATRIX_H

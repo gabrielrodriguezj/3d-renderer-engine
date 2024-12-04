@@ -1,4 +1,4 @@
-#include "ObjParser.h"
+#include "obj_parser.h"
 
 #include <fstream>
 #include <iostream>

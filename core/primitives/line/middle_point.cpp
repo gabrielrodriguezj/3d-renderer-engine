@@ -1,9 +1,10 @@
-#include "Bresenham.h"
+#include "middle_point.h"
 
-void Bresenham::draw(Canvas canvas, int x0, int y0, int x1, int y1, color_t color) {
+
+void MidPoint::draw(Canvas canvas, int x0, int y0, int x1, int y1, color_t color) {
     int dx = x1 - x0;
     int dy = y1 - y0;
-    int d = 2 * (dy - dx); // initial value of decision parameter
+    int d = dy - (dx / 2.0); // initial value of decision parameter
 
     int x = x0;
     int y = y0;
@@ -12,12 +13,12 @@ void Bresenham::draw(Canvas canvas, int x0, int y0, int x1, int y1, color_t colo
 
         // the East pixel is chosen
         if(d < 0){
-            d = d + 2*dy;
+            d += dy;
         }
         // the NEast pixel is chosen
         else{
-            y = y+1;
-            d = d + 2*dy - 2*dx;
+            d += (dy - dx);
+            y++;
         }
         canvas.drawPixel(x, y, color);
     }

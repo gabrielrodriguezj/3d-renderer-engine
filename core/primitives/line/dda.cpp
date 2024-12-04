@@ -1,4 +1,4 @@
-#include "DDA.h"
+#include "dda.h"
 #include "math.h"
 
 void DDA::draw(Canvas canvas, int x0, int y0, int x1, int y1, color_t color) {

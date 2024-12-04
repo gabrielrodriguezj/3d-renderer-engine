@@ -6,7 +6,7 @@
 #define INC_3D_RENDERER_ENGINE_DDA_H
 
 
-#include "Line.h"
+#include "line.h"
 
 class DDA: virtual public Line {
 public:

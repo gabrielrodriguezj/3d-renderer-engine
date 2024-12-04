@@ -6,7 +6,7 @@
 #define INC_3D_RENDERER_ENGINE_PERSPECTIVE_H
 
 
-#include "../vector/Vector.h"
+#include "../vector/vector.h"
 #include "../config.h"
 
 class Perspective {
