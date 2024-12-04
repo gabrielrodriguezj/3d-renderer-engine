@@ -46,7 +46,8 @@ int main(int argc, char* argv[]) {
     Cloud cloud;
 
     Canvas canvas(configuration.width, configuration.height);
-    parser.readFile("C:\\Users\\gabri\\CLionProjects\\3d-renderer-engine\\assets\\models\\cube.obj", model);
+    char *filename = "C:\\Users\\gabri\\CLionProjects\\3d-renderer-engine\\assets\\models\\cube.obj";
+    parser.readFile(filename, model);
 
     canvas.drawGrid();
     Perspective perspectiveProjection(configuration);
