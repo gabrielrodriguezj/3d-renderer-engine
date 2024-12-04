@@ -1,7 +1,7 @@
 #include "ui/SDLWindow.h"
 #include "core/ObjParser.h"
 #include "core/Canvas.h"
-#include "core/Rastering/CloudRaster.h"
+#include "core/rasterization/Cloud.h"
 
 bool isRunning = false;
 
@@ -28,18 +28,31 @@ void render(void){
 }
 
 int main(int argc, char* argv[]) {
-    SDLWindow window(800, 600);
+
+    // Initial test configuration
+    RenderConfiguration configuration{
+        .width = 800,
+        .height = 600,
+        .fov = 160,
+        .znear = 100,
+        .zfar = 0.01,
+        .fps = 60
+    };
+
+    SDLWindow window(configuration.width, configuration.height);
     isRunning = window.isRunning();
 
     Model model;
     ObjParser parser;
-    CloudRaster cloud;
+    Cloud cloud;
 
-    Canvas canvas(800, 600);
+    Canvas canvas(configuration.width, configuration.height);
     parser.readFile("C:\\Users\\gabri\\CLionProjects\\3d-renderer-engine\\assets\\models\\cube.obj", model);
 
     canvas.drawGrid();
-    cloud.raster(canvas, model);
+    Perspective perspectiveProjection(configuration);
+    cloud.raster(canvas, model, perspectiveProjection);
+
     window.update(canvas);
 
     while (isRunning){
