@@ -1,5 +1,6 @@
 #include "SDLWindow.h"
 #include <stdio.h>
+#include <iostream>
 
 SDLWindow::SDLWindow(int width, int height) {
     this->windowWidth = width;
@@ -18,7 +19,7 @@ SDLWindow::SDLWindow(int width, int height) {
 
     //Create a SDL window
     this->window = SDL_CreateWindow(
-            NULL, // title
+            "3D renderer engine", // title
             SDL_WINDOWPOS_CENTERED, //pos x
             SDL_WINDOWPOS_CENTERED, //pos y
             this->windowWidth, // width
@@ -41,7 +42,7 @@ SDLWindow::SDLWindow(int width, int height) {
     }
 
     // Creating a SDL texture that is used to display the color buffer
-    this->color_buffer_texture = SDL_CreateTexture(
+    this->colorBufferTexture = SDL_CreateTexture(
             renderer,
             SDL_PIXELFORMAT_RGBA32,
             SDL_TEXTUREACCESS_STREAMING,
@@ -66,4 +67,24 @@ void SDLWindow::destroy() {
     SDL_DestroyRenderer(this->renderer);
     SDL_DestroyWindow(this->window);
     SDL_Quit();
+}
+
+void SDLWindow::update(Canvas canvas){
+    // Copy the frame buffer to the texture
+    SDL_UpdateTexture(
+            colorBufferTexture,
+            NULL, // No rectangle area to update. NULL indicates that update the entire texture
+            canvas.getBuffer(), // the source, raw pixel data
+            (int)(this->windowWidth * sizeof(uint32_t)) // The number of bytes in a row of pixel data
+    );
+
+    // Copy the texture (or portion) to the current rendering target
+    SDL_RenderCopy(renderer,
+                   colorBufferTexture,
+                   NULL, // render the entire texture, no specific rectangle
+                   NULL // the entire rendering target, no specific rectangle (section)
+    );
+
+    // update the window
+    SDL_RenderPresent(renderer);
 }
