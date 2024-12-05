@@ -1,7 +1,6 @@
 #include "cloud.h"
-#include "../projection/perspective.h"
 
-void Cloud::raster(Canvas canvas, Model model, Perspective projecter) {
+void Cloud::render(Canvas canvas, Model model, Projection projecter) {
 
     for (vec3_t vertex: model.getVertices()) {
         vec2_t projectedPoint = projecter.project(vertex);
