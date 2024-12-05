@@ -8,13 +8,11 @@
 #define INC_3D_RENDERER_ENGINE_CLOUD_H
 
 
-#include "../model/model.h"
-#include "../canvas.h"
-#include "../projection/perspective.h"
+#include "renderer.h"
 
-class Cloud {
+class Cloud: virtual public Renderer{
 public:
-    void raster(Canvas, Model, Perspective);
+    void render(Canvas, Model, Projection);
 };
 
 
