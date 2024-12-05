@@ -3,7 +3,6 @@
 #include "core/transformation/transformation.h"
 #include "core/projection/projection.h"
 #include "core/rendering/renderer.h"
-#include "core/rendering/cloud.h"
 #include "core/projection/perspective.h"
 #include "core/rendering/skelethon.h"
 
@@ -46,13 +45,12 @@ int main(int argc, char* argv[]) {
     isRunning = window.isRunning();
 
     ObjParser parser;
-    Renderer *cloud = new Skelethon();
-
-    Canvas canvas(configuration.width, configuration.height);
-    char *filename = "C:\\Users\\gabri\\CLionProjects\\3d-renderer-engine\\assets\\models\\cube.obj";
+    char *filename = "C:\\Users\\gabri\\CLionProjects\\3d-renderer-engine\\assets\\models\\donut.obj";
     Model model = parser.readFile(filename);
-    Projection *perspectiveProjection = new Perspective(configuration);
 
+    Renderer *cloud = new Skelethon();
+    Canvas canvas(configuration.width, configuration.height);
+    Projection *perspectiveProjection = new Perspective(configuration);
 
     while (isRunning){
         processInput();
