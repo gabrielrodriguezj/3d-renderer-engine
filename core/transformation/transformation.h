@@ -9,9 +9,9 @@
 #include "../model/model.h"
 
 struct TransformationCoefficients {
-    float escalationX, escalationY, escalationZ = 1;
-    float translationX, translationY, translationZ = 0;
-    float rotationX, rotationY, rotationZ = 0;
+    float escalationX = 1, escalationY = 1, escalationZ = 1;
+    float translationX = 0, translationY = 0, translationZ = 0;
+    float rotationX = 0, rotationY = 0, rotationZ = 0;
 };
 
 class Transformation {
