@@ -5,6 +5,7 @@
 #include "core/rendering/renderer.h"
 #include "core/rendering/cloud.h"
 #include "core/projection/perspective.h"
+#include "core/rendering/skelethon.h"
 
 bool isRunning = false;
 
@@ -45,7 +46,7 @@ int main(int argc, char* argv[]) {
     isRunning = window.isRunning();
 
     ObjParser parser;
-    Renderer *cloud = new Cloud();
+    Renderer *cloud = new Skelethon();
 
     Canvas canvas(configuration.width, configuration.height);
     char *filename = "C:\\Users\\gabri\\CLionProjects\\3d-renderer-engine\\assets\\models\\cube.obj";
