@@ -38,3 +38,13 @@ color_t *Canvas::getBuffer(void){
     return this->color_buffer;
 }
 
+void Canvas::clear(color_t color) {
+    for(int i = 0; i < this->width * this->height; i++){
+        color_buffer[i] = color;
+    }
+}
+
+void clear_color_buffer(uint32_t color){
+
+
+}

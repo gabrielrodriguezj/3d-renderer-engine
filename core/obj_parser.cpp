@@ -4,15 +4,18 @@
 #include <iostream>
 #include <sstream>
 
-int ObjParser::readFile(char* filename, Model model) {
+Model ObjParser::readFile(char* filename) {
 
     std::ifstream file(filename); // input file stream object named
     std::string line;
 
     if (!file.is_open()) {
         std::cerr << "Unable to open file!" << std::endl;
-        return -1;
+        // return -1;
     }
+
+    std::vector<vec3_t> vertices; // = new std::vector<vec3_t>();
+    std::vector<face_t> faces; //= new std::vector<face_t>();
 
     while (getline(file, line)) {
         // Vertex information
@@ -24,7 +27,7 @@ int ObjParser::readFile(char* filename, Model model) {
             std::string flag;
             iss >> flag >> vertex.x >> vertex.y >> vertex.z;
 
-            model.addVertice(vertex);
+            vertices.push_back(vertex);
         }
 
         // Face information
@@ -44,10 +47,11 @@ int ObjParser::readFile(char* filename, Model model) {
                     .b = vertex_indices[1],
                     .c = vertex_indices[2],
             };
-            model.addFace(face);
+            faces.push_back(face);
         }
     }
-
     file.close();
-    return 0;
+
+    Model model(vertices, faces);
+    return model;
 }
