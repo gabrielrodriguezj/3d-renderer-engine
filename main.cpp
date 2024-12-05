@@ -1,13 +1,16 @@
 #include "ui/sdl_window.h"
 #include "core/obj_parser.h"
-#include "core/rasterization/cloud.h"
 #include "core/transformation/transformation.h"
+#include "core/projection/projection.h"
+#include "core/rendering/renderer.h"
+#include "core/rendering/cloud.h"
+#include "core/projection/perspective.h"
 
 bool isRunning = false;
 
 void processInput(void);
 Model update(Model, TransformationCoefficients);
-void render(SDLWindow*, Canvas, Model, Perspective, Cloud);
+void render(SDLWindow*, Canvas, Model, Projection*, Renderer*);
 void freeResources(void);
 
 int main(int argc, char* argv[]) {
@@ -42,12 +45,12 @@ int main(int argc, char* argv[]) {
     isRunning = window.isRunning();
 
     ObjParser parser;
-    Cloud cloud;
+    Renderer *cloud = new Cloud();
 
     Canvas canvas(configuration.width, configuration.height);
     char *filename = "C:\\Users\\gabri\\CLionProjects\\3d-renderer-engine\\assets\\models\\cube.obj";
     Model model = parser.readFile(filename);
-    Perspective perspectiveProjection(configuration);
+    Projection *perspectiveProjection = new Perspective(configuration);
 
 
     while (isRunning){
@@ -56,6 +59,7 @@ int main(int argc, char* argv[]) {
         transformations.rotationX += 0.1;
         transformations.rotationY += 0.1;
         transformations.rotationZ += 0.1;
+        transformations.translationZ = 5.0;
 
         Model m = update(model,transformations);
         render(&window,
@@ -95,21 +99,19 @@ void processInput(void){
 }
 
 Model update(Model model, TransformationCoefficients transformationCoefficients){
-
     Transformation transformer;
     auto transformedModel = transformer.transformModel(model, transformationCoefficients);
-
     return transformedModel;
 }
 
 void render(SDLWindow *window,
             Canvas canvas,
             Model model,
-            Perspective perspective,
-            Cloud cloud){
+            Projection *projection,
+            Renderer *renderer){
 
     canvas.drawGrid();
-    cloud.raster(canvas, model, perspective);
+    renderer->render(canvas, model, projection);
     window->update(canvas);
     canvas.clear(0xFF000000);
 }
