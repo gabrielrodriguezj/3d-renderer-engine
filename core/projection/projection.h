@@ -1,3 +1,7 @@
+/*
+ * The base class for the different projection approaches.
+ */
+
 #ifndef INC_3D_RENDERER_ENGINE_PROJECTION_H
 #define INC_3D_RENDERER_ENGINE_PROJECTION_H
 
@@ -10,7 +14,7 @@ public:
     Projection(RenderConfiguration renderConfiguration){
         this->renderConfiguration = renderConfiguration;
     }
-    virtual vec2_t project(vec3_t){}
+    virtual vec2_t project(vec3_t){ vec2_t v; return v;}
 
 protected:
     RenderConfiguration renderConfiguration;
