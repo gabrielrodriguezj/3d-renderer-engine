@@ -45,7 +45,7 @@ int main(int argc, char* argv[]) {
     isRunning = window.isRunning();
 
     ObjParser parser;
-    char *filename = "C:\\Users\\gabri\\CLionProjects\\3d-renderer-engine\\assets\\models\\donut.obj";
+    char *filename = argv[1];
     Model model = parser.readFile(filename);
 
     Renderer *cloud = new Skelethon();
