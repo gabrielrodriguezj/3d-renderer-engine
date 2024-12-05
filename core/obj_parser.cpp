@@ -38,14 +38,16 @@ Model ObjParser::readFile(char* filename) {
 
             std::istringstream iss(line);
             std::string flag;
-            iss >> flag >> vertex_indices[0] >> texture_indices[0] >> normal_indices[0]
-                >> vertex_indices[1] >> texture_indices[1] >> normal_indices[1]
-                >> vertex_indices[2] >> texture_indices[2] >> normal_indices[2];
+            char slash;
+            iss >> flag >> vertex_indices[0] >> slash >> texture_indices[0] >> slash >> normal_indices[0]
+                        >> vertex_indices[1] >> slash >> texture_indices[1] >> slash >> normal_indices[1]
+                        >> vertex_indices[2] >> slash >> texture_indices[2] >> slash >> normal_indices[2];
 
+            // The obj model file uses index that start in 1, but C++ starts with 0
             face_t face = {
-                    .a = vertex_indices[0],
-                    .b = vertex_indices[1],
-                    .c = vertex_indices[2],
+                    .a = vertex_indices[0] - 1,
+                    .b = vertex_indices[1] - 1,
+                    .c = vertex_indices[2] - 1,
             };
             faces.push_back(face);
         }
