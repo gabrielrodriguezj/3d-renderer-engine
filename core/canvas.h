@@ -12,6 +12,7 @@ public:
     void drawRect(int, int, int, int, color_t);
     void drawGrid(void);
     color_t *getBuffer(void);
+    void clear(color_t);
 private:
     color_t * color_buffer;
     int width;

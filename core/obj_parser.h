@@ -10,7 +10,7 @@
 
 class ObjParser {
 public:
-    int readFile(char* filename, Model);
+    Model readFile(char* filename);
 };
 
 

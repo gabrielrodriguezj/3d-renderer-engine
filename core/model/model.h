@@ -7,18 +7,18 @@
 
 
 #include <vector>
-#include "../vector/vector.h"
 #include "Face.h"
+#include "../vector/vector3.h"
 
 class Model {
 public:
-    void addVertice(vec3_t);
-    void addFace(face_t);
-    std::vector<vec3_t>* getVertices();
-
+    Model(void);
+    Model(std::vector<vec3_t> vertices, std::vector<face_t> faces);
+    std::vector<vec3_t> getVertices();
+    std::vector<face_t> getFaces();
 private:
-    std::vector<vec3_t> *vertices = new std::vector<vec3_t>();
-    std::vector<face_t> *faces = new std::vector<face_t>();
+    std::vector<vec3_t> *vertices;
+    std::vector<face_t> *faces;
 };
 
 
