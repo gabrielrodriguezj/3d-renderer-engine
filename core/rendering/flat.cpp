@@ -1,12 +1,12 @@
 #include "flat.h"
 #include "../primitives/line/dda.h"
 
-void Flat::render(Canvas canvas, Model model, Projection *projecter) {
+void Flat::render(Canvas canvas, Model model, Projection *projector) {
 
     std::vector<vec2_t> projectedPoints;
 
     for (vec3_t vertex: model.getVertices()) {
-        vec2_t projectedPoint = projecter->project(vertex);
+        vec2_t projectedPoint = projector->project(vertex);
         projectedPoints.push_back(projectedPoint);
     }
 
