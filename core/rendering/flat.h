@@ -14,11 +14,10 @@ public:
     void render(Canvas, Model, Projection*);
 
 private:
-    Canvas canvas;
     void swap(int* a, int* b);
-    void fillFlatBottomTriangle(int, int, int, int, int, int, color_t, Line*);
-    void fillFlatTopTriangle(int, int, int, int, int, int, color_t, Line*);
-    void drawFilledTriangle(int, int, int, int, int, int, color_t);
+    void fillFlatBottomTriangle(Canvas, int, int, int, int, int, int, color_t, Line*);
+    void fillFlatTopTriangle(Canvas, int, int, int, int, int, int, color_t, Line*);
+    void drawFilledTriangle(Canvas, int, int, int, int, int, int, color_t);
 };
 
 
