@@ -1,7 +1,7 @@
-#include "flat.h"
+#include "flat_fill.h"
 #include "../primitives/line/dda.h"
 
-void Flat::render(Canvas canvas, Model model, Projection *projector) {
+void FlatFill::render(Canvas canvas, Model model, Projection *projector) {
 
     std::vector<vec2_t> projectedPoints;
 
@@ -24,7 +24,7 @@ void Flat::render(Canvas canvas, Model model, Projection *projector) {
     }
 }
 
-void Flat::swap(int* a, int* b) {
+void FlatFill::swap(int* a, int* b) {
     int tmp = *a;
     *a = *b;
     *b = tmp;
@@ -52,7 +52,7 @@ void Flat::swap(int* a, int* b) {
  *                         (x2,y2)
  *
  */
-void Flat::drawFilledTriangle(Canvas canvas, int x0, int y0, int x1, int y1, int x2, int y2, color_t color) {
+void FlatFill::drawFilledTriangle(Canvas canvas, int x0, int y0, int x1, int y1, int x2, int y2, color_t color) {
     Line *line = new DDA();
 
     // We need to sort the vertices by y-coordinate ascending (y0 < y1 < y2)
@@ -100,7 +100,7 @@ void Flat::drawFilledTriangle(Canvas canvas, int x0, int y0, int x1, int y1, int
  *  (x1,y1)------(x2,y2) = (Mx, My)
  *
  */
-void Flat::fillFlatBottomTriangle(Canvas canvas, int x0, int y0, int x1, int y1, int x2, int y2, color_t color, Line *line) {
+void FlatFill::fillFlatBottomTriangle(Canvas canvas, int x0, int y0, int x1, int y1, int x2, int y2, color_t color, Line *line) {
     // Find the two slopes (two triangle legs)
     float invSlope1 = (float)(x1 - x0) / (float) (y1 - y0);
     float invSlope2 = (float)(x2 - x0) / (float) (y2 - y0);
@@ -131,7 +131,7 @@ void Flat::fillFlatBottomTriangle(Canvas canvas, int x0, int y0, int x1, int y1,
  *                           \
  *                         (x2,y2)
  */
-void Flat::fillFlatTopTriangle(Canvas canvas, int x0, int y0, int x1, int y1, int x2, int y2, color_t color, Line *line) {
+void FlatFill::fillFlatTopTriangle(Canvas canvas, int x0, int y0, int x1, int y1, int x2, int y2, color_t color, Line *line) {
     // Find the two slopes (two triangle legs)
     float invSlope1 = (float)(x2 - x0) / (float)(y2 - y0);
     float invSlope2 = (float)(x2 - x1) / (float)(y2 - y1);
