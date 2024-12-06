@@ -2,8 +2,8 @@
 #include "core/obj_parser.h"
 #include "core/transformation/transformation.h"
 #include "core/projection/projection.h"
-#include "core/rendering/renderer.h"
 #include "core/projection/perspective.h"
+#include "core/rendering/flat.h"
 #include "core/rendering/skelethon.h"
 
 bool isRunning = false;
@@ -26,19 +26,10 @@ int main(int argc, char* argv[]) {
     };
 
     // Initial configuration of the transformation
-    TransformationCoefficients transformations{
-        .escalationX = 1.0,
-        .escalationY = 1.0,
-        .escalationZ = 1.0,
-        .translationX = 0.0,
-        .translationY = 0.0,
-        .translationZ = 5,
-        .rotationX = 0.5,
-        .rotationY = 0.5,
-        .rotationZ = 0.5,
-    };
+    TransformationCoefficients transformations;
+    transformations.translationZ = 5;
 
-    float frameTargetTime = (1000 / configuration.fps);
+    auto frameTargetTime = (float)(1000.0/ configuration.fps);
     uint32_t previous_frame_time = 0;
 
     SDLWindow window(configuration.width, configuration.height);
@@ -48,7 +39,7 @@ int main(int argc, char* argv[]) {
     char *filename = argv[1];
     Model model = parser.readFile(filename);
 
-    Renderer *cloud = new Skelethon();
+    Renderer *renderer = new Flat();
     Canvas canvas(configuration.width, configuration.height);
     Projection *perspectiveProjection = new Perspective(configuration);
 
@@ -65,7 +56,7 @@ int main(int argc, char* argv[]) {
                canvas,
                m,
                perspectiveProjection,
-               cloud);
+               renderer);
 
         // Guarantees that every frame is executed every FRAME_TARGET_TIME
         // Wait some time until the reach the target frame time in milliseconds
