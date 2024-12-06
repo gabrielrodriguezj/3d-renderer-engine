@@ -10,7 +10,18 @@ void Flat::render(Canvas canvas, Model model, Projection *projecter) {
         projectedPoints.push_back(projectedPoint);
     }
 
-    this->canvas = canvas;
+    int x0, x1, x2, y0, y1, y2;
+
+    for (face_t face: model.getFaces()) {
+        x0 = (int)projectedPoints.at(face.a).x;
+        y0 = (int)projectedPoints.at(face.a).y;
+        x1 = (int)projectedPoints.at(face.b).x;
+        y1 = (int)projectedPoints.at(face.b).y;
+        x2 = (int)projectedPoints.at(face.c).x;
+        y2 = (int)projectedPoints.at(face.c).y;
+
+        drawFilledTriangle(canvas, x0, y0, x1, y1, x2, y2, 0xFFFF00FF);
+    }
 }
 
 void Flat::swap(int* a, int* b) {
@@ -41,7 +52,7 @@ void Flat::swap(int* a, int* b) {
  *                         (x2,y2)
  *
  */
-void Flat::drawFilledTriangle(int x0, int y0, int x1, int y1, int x2, int y2, color_t color) {
+void Flat::drawFilledTriangle(Canvas canvas, int x0, int y0, int x1, int y1, int x2, int y2, color_t color) {
     Line *line = new DDA();
 
     // We need to sort the vertices by y-coordinate ascending (y0 < y1 < y2)
@@ -60,24 +71,21 @@ void Flat::drawFilledTriangle(int x0, int y0, int x1, int y1, int x2, int y2, co
 
     if (y1 == y2) {
         // Draw flat-bottom triangle
-        fillFlatBottomTriangle(x0, y0, x1, y1, x2, y2, color, line);
+        fillFlatBottomTriangle(canvas, x0, y0, x1, y1, x2, y2, color, line);
     } else if (y0 == y1) {
         // Draw flat-top triangle
-        fillFlatTopTriangle(x0, y0, x1, y1, x2, y2, color, line);
+        fillFlatTopTriangle(canvas, x0, y0, x1, y1, x2, y2, color, line);
     } else {
         // Calculate the new vertex (Mx,My) using triangle similarity
         int My = y1;
         int Mx = (((x2 - x0) * (y1 - y0)) / (y2 - y0)) + x0;
 
         // Draw flat-bottom triangle
-        fillFlatBottomTriangle(x0, y0, x1, y1, Mx, My, color, line);
+        fillFlatBottomTriangle(canvas, x0, y0, x1, y1, Mx, My, color, line);
 
         // Draw flat-top triangle
-        fillFlatTopTriangle(x1, y1, Mx, My, x2, y2, color, line);
+        fillFlatTopTriangle(canvas, x1, y1, Mx, My, x2, y2, color, line);
     }
-
-
-
 }
 
 /*
@@ -92,7 +100,7 @@ void Flat::drawFilledTriangle(int x0, int y0, int x1, int y1, int x2, int y2, co
  *  (x1,y1)------(x2,y2) = (Mx, My)
  *
  */
-void Flat::fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, int y2, color_t color, Line *line) {
+void Flat::fillFlatBottomTriangle(Canvas canvas, int x0, int y0, int x1, int y1, int x2, int y2, color_t color, Line *line) {
     // Find the two slopes (two triangle legs)
     float invSlope1 = (float)(x1 - x0) / (float) (y1 - y0);
     float invSlope2 = (float)(x2 - x0) / (float) (y2 - y0);
@@ -123,7 +131,7 @@ void Flat::fillFlatBottomTriangle(int x0, int y0, int x1, int y1, int x2, int y2
  *                           \
  *                         (x2,y2)
  */
-void Flat::fillFlatTopTriangle(int x0, int y0, int x1, int y1, int x2, int y2, color_t color, Line *line) {
+void Flat::fillFlatTopTriangle(Canvas canvas, int x0, int y0, int x1, int y1, int x2, int y2, color_t color, Line *line) {
     // Find the two slopes (two triangle legs)
     float invSlope1 = (float)(x2 - x0) / (float)(y2 - y0);
     float invSlope2 = (float)(x2 - x1) / (float)(y2 - y1);
