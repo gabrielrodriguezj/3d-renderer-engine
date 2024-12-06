@@ -12,7 +12,7 @@
 
 class Cloud: virtual public Renderer{
 public:
-    void render(Canvas, Model, Projection*);
+    void render(Canvas, Model, Projection*) override;
 };
 
 

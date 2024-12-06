@@ -11,13 +11,13 @@
 
 class Flat: virtual public Renderer{
 public:
-    void render(Canvas, Model, Projection*);
+    void render(Canvas, Model, Projection*) override;
 
 private:
-    void swap(int* a, int* b);
-    void fillFlatBottomTriangle(Canvas, int, int, int, int, int, int, color_t, Line*);
-    void fillFlatTopTriangle(Canvas, int, int, int, int, int, int, color_t, Line*);
-    void drawFilledTriangle(Canvas, int, int, int, int, int, int, color_t);
+    static void swap(int* a, int* b);
+    static void fillFlatBottomTriangle(Canvas, int, int, int, int, int, int, color_t, Line*);
+    static void fillFlatTopTriangle(Canvas, int, int, int, int, int, int, color_t, Line*);
+    static void drawFilledTriangle(Canvas, int, int, int, int, int, int, color_t);
 };
 
 
