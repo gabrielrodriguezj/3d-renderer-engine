@@ -2,14 +2,14 @@
  * This class implements the scanline technique to draw triangles of a 3D model.
  */
 
-#ifndef INC_3D_RENDERER_ENGINE_FLAT_H
-#define INC_3D_RENDERER_ENGINE_FLAT_H
+#ifndef INC_3D_RENDERER_ENGINE_FLAT_FILL_H
+#define INC_3D_RENDERER_ENGINE_FLAT_FILL_H
 
 
 #include "renderer.h"
 #include "../primitives/line/line.h"
 
-class Flat: virtual public Renderer{
+class FlatFill: virtual public Renderer{
 public:
     void render(Canvas, Model, Projection*) override;
 
@@ -21,4 +21,4 @@ private:
 };
 
 
-#endif //INC_3D_RENDERER_ENGINE_FLAT_H
+#endif //INC_3D_RENDERER_ENGINE_FLAT_FILL_H
