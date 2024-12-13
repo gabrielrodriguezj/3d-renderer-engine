@@ -3,15 +3,15 @@
 #include "core/transformation/transformation.h"
 #include "core/projection/projection.h"
 #include "core/projection/perspective.h"
-#include "core/rendering/flat.h"
+#include "core/rendering/flat_fill.h"
 #include "core/rendering/skelethon.h"
 
 bool isRunning = false;
 
-void processInput(void);
+void processInput();
 Model update(Model, TransformationCoefficients);
 void render(SDLWindow*, Canvas, Model, Projection*, Renderer*);
-void freeResources(void);
+void freeResources();
 
 int main(int argc, char* argv[]) {
 
@@ -27,9 +27,9 @@ int main(int argc, char* argv[]) {
 
     // Initial configuration of the transformation
     TransformationCoefficients transformations;
-    transformations.translationZ = 5;
+    transformations.translationZ = 5.0;
 
-    auto frameTargetTime = (float)(1000.0/ configuration.fps);
+    auto frameTargetTime = (int)(1000.0/ configuration.fps);
     uint32_t previous_frame_time = 0;
 
     SDLWindow window(configuration.width, configuration.height);
@@ -39,7 +39,7 @@ int main(int argc, char* argv[]) {
     char *filename = argv[1];
     Model model = parser.readFile(filename);
 
-    Renderer *renderer = new Flat();
+    Renderer *renderer = new FlatFill();
     Canvas canvas(configuration.width, configuration.height);
     Projection *perspectiveProjection = new Perspective(configuration);
 
@@ -49,7 +49,6 @@ int main(int argc, char* argv[]) {
         transformations.rotationX += 0.1;
         transformations.rotationY += 0.1;
         transformations.rotationZ += 0.1;
-        transformations.translationZ = 5.0;
 
         Model m = update(model,transformations);
         render(&window,
@@ -60,7 +59,7 @@ int main(int argc, char* argv[]) {
 
         // Guarantees that every frame is executed every FRAME_TARGET_TIME
         // Wait some time until the reach the target frame time in milliseconds
-        int time_to_wait = frameTargetTime - (SDL_GetTicks() - previous_frame_time);
+        int time_to_wait = (int)(frameTargetTime - (SDL_GetTicks() - previous_frame_time));
 
         // Only delay execution if we are running too fast
         if(time_to_wait >0 && time_to_wait <= frameTargetTime){
@@ -74,7 +73,7 @@ int main(int argc, char* argv[]) {
     return 0;
 }
 
-void processInput(void){
+void processInput(){
     SDL_Event event;
     SDL_PollEvent(&event);
 
